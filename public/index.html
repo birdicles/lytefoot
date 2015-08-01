@@ -55,7 +55,11 @@ var CommentForm = React.createClass({
   render: function() {
     return (
       <div className="commentForm">
-        Hello, world! I am a CommentForm.
+        <form>
+          <input type="text" placeholder="your name"/>
+          <input type="text" placeholder="your note"/>
+          <button type="submit">comment</button>
+        </form>
       </div>
     );
   }
