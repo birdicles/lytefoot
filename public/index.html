@@ -13,20 +13,26 @@
 </div>
     <script type="text/jsx">
 
-    var data = [
-  {author: "Pete Hunt", text: "This is one comment"},
-  {author: "Jordan Walke", text: "This is *another* comment"},
-  {author: "birdie cles", text: "This is the third comment"}
-];
+   
 // tutorial1.js
 var CommentBox = React.createClass({
+
+  getInitialState: function(){
+    return {data: []};
+  },
+
+  handleCommentSubmit: function(comment){
+    this.state.data.push(comment);
+    this.setState(this.state);
+  },
+
   render: function() {
     return (
       <div className="commentBox">
       <h1> Comment List </h1>
-        <CommentList data={this.props.data} />
+        <CommentList data={this.state.data} />
         <h2> Comment Fform </h2>
-        <CommentForm />
+        <CommentForm addComment={this.handleCommentSubmit}/>
       </div>
     );
   }
@@ -58,7 +64,10 @@ var CommentForm = React.createClass({
     var author = React.findDOMNode(this.refs.author).value.trim();
     var text = React.findDOMNode(this.refs.text).value.trim();
 
-    alert(author + " - " + text);
+    this.props.addComment({
+      author: author,
+      text: text
+    });
 
   },
 
@@ -90,7 +99,7 @@ var Comment = React.createClass({
 });
 
 React.render(
-  <CommentBox data={data}/>,
+  <CommentBox />,
   document.getElementById('content')
 );    </script>
   </body>
