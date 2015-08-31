@@ -9,29 +9,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
   <body>
-    <div id="content">    i love jesus
-</div>
+    <!-- this is the content element over which we will render our mini application -->
+    <div id="content">i love jesus</div>
     <script type="text/jsx">
 
    
 // tutorial1.js
+
+/**
+ * the comment box is the top-level component for this mini-application.
+ * that means it's in charge of everything, most importantly data management.  
+ * This is a design decision rather than a technical requirement.
+ */ 
 var CommentBox = React.createClass({
 
+  /** 
+   * getInitialState is a React lifecycle method (https://facebook.github.io/react/docs/component-specs.html)
+   * it's where we tell the component it's internal state when it is first created.  In our case, we are using the 
+   * internal state to manage the list of comments.  This is a simplified, non-persistent way of storing the comments.
+   */ 
   getInitialState: function(){
-    return {data: []};
+    return {comments: []};
   },
 
+  // this is the method we provide to child components to call when they want to add a new comment.
+  // we keep it here because CommentBox is in charge of manageing the state/data.
   handleCommentSubmit: function(comment){
-    this.state.data.push(comment);
+    this.state.comments.push(comment);
+    // setting the state will trigger a re-render of the component and any child components
     this.setState(this.state);
   },
 
+  /** 
+   * render a comment box.
+   * the comment box is a container which holds a list of comments and a form for adding a new comment.
+   */ 
   render: function() {
     return (
       <div className="commentBox">
       <h1> Comment List </h1>
-        <CommentList data={this.state.data} />
+        // the list child component
+        // note we are passing in the current list of comments as a property
+        <CommentList comments={this.state.comments} />
         <h2> Comment Fform </h2>
+        // the form child component.  notice how we pass the submit method as a property.
+        // we are in effect telling the CommentForm "call this when you want to add a comment"
         <CommentForm addComment={this.handleCommentSubmit}/>
       </div>
     );
@@ -39,16 +61,30 @@ var CommentBox = React.createClass({
 });
 
 // tutorial2.js
+
+// this is the list of existing comments
 var CommentList = React.createClass({
   render: function() {
-    var commentNodes = this.props.data.map(function (comment) {
+    
+    // we are passed in the comment list, but it is just an array of data
+    // we need to turn it into an array of React Components that can be rendered
+    // here we are calling a function on each element of the comments property
+    // collection.map(thisFunction) => returns a new collection where each element has been 'mapped' by thisFunction
+    // but in this case we are defininig the function on-the-fly:
+    // collection.map(function(comment){ ... do stuff ... })
+    var commentNodes = this.props.comments.map(function (comment) {
+      // for every bit of comment data, return a new comment react component
+      // where we pass in the data as
       return (
+        // the author is passed in as a property
         <Comment author={comment.author}>
+          // the text is passed in as content, or as a "child"
           {comment.text}
         </Comment>
       );
     });
 
+    // commentNodes is now an array of react components and we can return them to be rendered
     return (
       <div className="commentList">
       {commentNodes}
@@ -57,25 +93,39 @@ var CommentList = React.createClass({
   }
 });
 
+// the new comment form, keep in mind the "addComment" methods was passed in as a property
 var CommentForm = React.createClass({
 
+  // this is the event handler for the submit button. it doesn't manage the data, but handles
+  // the html/javascript form submission and then relays the data handling to the addComment methods that was passed
+  // in as a property
   handleSubmit: function(event){
+    // stop the default form submission from happening
     event.preventDefault();
+    // use the React refs system to pull out the value of author and text
     var author = React.findDOMNode(this.refs.author).value.trim();
     var text = React.findDOMNode(this.refs.text).value.trim();
-
+    // then send the author and text to the addComment method up on the CommentBox top-level component.
     this.props.addComment({
       author: author,
       text: text
     });
-
+    
+    /**
+     * ps - there are other ways to extract the values other tha using the react refs system.  it's fast, but
+     *  doesn't work under some weird circumstances.  something like document.findElementById() will always work
+     */ 
   },
 
   render: function() {
     return (
       <div className="commentForm">
         Hello, world! I am a CommentForm.
+        // the comment form component is primarily a regular html form with a special submit handler
         <form onSubmit={this.handleSubmit}>
+        // ref='author' is what tells react to make this element available via this.refs
+        // we could also addid="author" and use document.getElementById('author')
+        // or add name="author" and use event.target.values.author  (I think)
           <input type="text" placeholder="your name" ref="author"/>
           <input type="text" placeholder="your comment" ref="text"/>
           <input type="submit" value="submit" />
@@ -85,19 +135,26 @@ var CommentForm = React.createClass({
   }
 });
 
+// a basica comment component, display the author and content
 var Comment = React.createClass({
    render: function() {
     return (
       <div className="comment">
+      // author passed in as a property
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
+        // remember the text was passed in as content or "children" of the comment.
+        // this is how you render children.  if the children were real react components, they would render normally.
+        // in this case, it's just text and renders very simply.
         {this.props.children}
       </div>
     );
   }
 });
 
+
+// now that we have everything defined, render the comment box over top of the "content" element we defined in the html above.
 React.render(
   <CommentBox />,
   document.getElementById('content')
