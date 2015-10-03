@@ -9,6 +9,7 @@ export default class App extends React.Component {
     render() {
         return (
             <NavigatorIOS
+                navigationBarHidden={true}
                 style={styles.container}
                 initialRoute={{
                     title: 'View Nav',

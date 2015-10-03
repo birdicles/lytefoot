@@ -31,15 +31,10 @@ export default class LoginView extends React.Component {
 
     // for es6 subclassing syntax, bind handler to component scope in constructor
     onSubmit(e) {
-        console.log(e);
-        // this.props.navigator.push({
-        //     title: 'Sign Up',
-        //     component: SignupView,
-        //     passProps: {
-        //         title: 'Sign up',
-        //         items: []
-        //     }
-        // });
+        this.props.navigator.push({
+            title: 'Sign Up',
+            component: SignupView
+        });
     }
 
     render() {

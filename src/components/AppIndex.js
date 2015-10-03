@@ -53,23 +53,12 @@ export default class AppIndex extends React.Component {
     render() {
         // TODO - ROUTE AFTER AUTHENTICATION CHECK (USE FB AUTH?)
         // just a simple list nav for now
-
-        // <ListView
-        //     style={styles.container}
-        //     dataSource={this.state.dataSource}
-        //     renderRow={row => this.renderRow(row)}
-        // />
-
         return (
-            <NavigatorIOS
-                itemWrapperStyle={styles.navWrap}
-                style={styles.nav}
+            <ListView
                 navigationBarHidden={true}
-                initialRoute={{
-                    title: 'Login View',
-                    component: LoginView,
-                    passProps: { fakeProps: false }
-                }}
+                style={styles.container}
+                dataSource={this.state.dataSource}
+                renderRow={row => this.renderRow(row)}
             />
         );
     }
@@ -124,12 +113,5 @@ const styles = StyleSheet.create({
         bottom: 0,
         height: 1 / PixelRatio.get(),
         backgroundColor: '#ddd'
-    },
-
-    navWrap: {
-        flex: 1
-    },
-    nav: {
-        flex: 1
     }
 });
