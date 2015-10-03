@@ -9,9 +9,9 @@ Requires:
 - Xcode
 - Node 4.x+
 
-### Running the example app
+### Running the app
 
-Install the example app dependencies and start the server:
+Install the app dependencies and start the server:
 
 ```
 npm install
