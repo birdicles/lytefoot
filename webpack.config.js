@@ -18,15 +18,17 @@ var config = {
   },
 
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        stage: 0,
-        plugins: []
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          stage: 0,
+          plugins: []
+        }
       }
-    }]
+    ]
   },
 
   plugins: [],

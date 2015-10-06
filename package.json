@@ -5,7 +5,8 @@
   "scripts": {
     "start": "react-native-webpack-server start",
     "hot": "HOT=1 react-native-webpack-server start --hot",
-    "bundle": "react-native-webpack-server bundle"
+    "bundle": "react-native-webpack-server bundle",
+    "cleanup-modules": "npm install && npm dedupe && npm prune"
   },
   "dependencies": {
     "babel": "^5.8.23",
