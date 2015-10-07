@@ -57,5 +57,9 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Avenir.ttc</string>
+	</array>
 </dict>
 </plist>

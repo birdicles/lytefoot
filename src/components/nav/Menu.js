@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: window.width,
         height: window.height,
-        backgroundColor: 'gray',
+        backgroundColor: '#50d2c2',
         padding: 20
     },
     avatarContainer: {
@@ -31,16 +31,21 @@ const styles = StyleSheet.create({
         width: 48,
         height: 48,
         borderRadius: 24,
+        borderWidth: 1,
+        borderColor: 'red',
+        backgroundColor: '#e6e6e6',
         flex: 1
     },
     name: {
         position: 'absolute',
+        fontWeight: 'bold',
         left: 70,
         top: 20
     },
     item: {
         fontSize: 14,
         fontWeight: '300',
+        fontFamily: 'Avenir-Book',
         paddingTop: 5
     }
 });
@@ -64,8 +69,9 @@ export default class Menu extends Component {
                 <View style={styles.avatarContainer}>
                     <Image
                         style={styles.avatar}
-                        source={{ uri }}/>
-                    <Text style={styles.name}>Your name</Text>
+                        source={{uri}}
+                    />
+                    <Text style={styles.name}>View Menu</Text>
                 </View>
                 <TouchableOpacity
                     activeOpacity={0.7}
@@ -85,7 +91,7 @@ export default class Menu extends Component {
 }
 
 Menu.propTypes = {
-    navigator: React.PropTypes.array.isRequired,
+    navigator: React.PropTypes.object.isRequired,
     onViewSelect: React.PropTypes.func
 };
 

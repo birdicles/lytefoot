@@ -3,6 +3,7 @@
 import React, {
     StyleSheet,
     Text,
+    Image,
     View,
     TouchableOpacity
 } from 'react-native';
@@ -44,6 +45,14 @@ export default class LoginView extends React.Component {
                     <Text style={styles.title}>
                         {this.props.title}
                     </Text>
+                    <Image
+                        style={{flex: 1, overflow: 'visible'}}
+                        source={{uri: 'http://pickaface.net/includes/themes/clean/img/slide2.png'}}
+                    />
+                    <Image
+                        style={{width: 400, height: 400}}
+                        source={require('image!login-check')}
+                    />
                 </View>
                 <View style={[styles.border, styles.bottomAlign]}>
                     <View style={styles.bottomContainer}>
@@ -94,7 +103,8 @@ const styles = StyleSheet.create({
     // centered icon
     top: {
         flex: 1,
-        borderColor: 'red'
+        borderColor: 'red',
+        backgroundColor: 'lightblue'
     },
     title: {
         padding: 14,

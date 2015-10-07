@@ -20,6 +20,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		37C873631BC4A998009C7BA9 /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 37C873621BC4A998009C7BA9 /* Avenir.ttc */; settings = {ASSET_TAGS = (); }; };
 		37D766DE1B169C2300A0934A /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D766DC1B169BD700A0934A /* libRCTWebSocket.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -121,6 +122,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		37C873621BC4A998009C7BA9 /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; name = Avenir.ttc; path = ../../../../System/Library/Fonts/Avenir.ttc; sourceTree = "<group>"; };
 		37D766CF1B169BD700A0934A /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -225,6 +227,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		37C873511BC4A8AE009C7BA9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				37C8735E1BC4A928009C7BA9 /* Fonts */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		37C8735E1BC4A928009C7BA9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				37C873621BC4A998009C7BA9 /* Avenir.ttc */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		37D766D01B169BD700A0934A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +287,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				37C873511BC4A8AE009C7BA9 /* Assets */,
 				37D766CF1B169BD700A0934A /* RCTWebSocket.xcodeproj */,
 				13B07FAE1A68108700A75B9A /* BabelES6 */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -464,6 +483,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C873631BC4A998009C7BA9 /* Avenir.ttc in Resources */,
 				008F07F31AC5B25A0029DE68 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
