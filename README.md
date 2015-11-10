@@ -2,36 +2,29 @@
 
 Dog walking app / trial run for React-native and life enhancement through collaboration.
 - React-native
-- React-native-webpack-server
-- Babel
 
 Requires:
 - Xcode
 - Node 4.x+
 
-### Running the app
+### Installing the app
 
 Install the app dependencies and start the server:
 
 ```
-npm install
 npm start
 ```
 
-To run with hot reload:
+### To run your app on iOS
 
-```
-npm run hot
-```
+- Open /Users/nelsonshin/Sites/lytefoot/lytefoot/ios/lytefoot.xcodeproj in Xcode
+- Hit Run button
+- Setup auto reload: select Enable Live Reload via the developer menu (Cmd+D on device) to have the application automatically reload when changes are made to the JavaScript.
+- Debug with Chrome: select Debug in Chrome from the developer menu (Cmd+D on device). This will open a new tab at http://localhost:8081/debugger-ui.
 
-- After webpack server is spooled up, open the Xcode project and build/run.
-- Emulator will open in errored state; escape out of this state and CMD+D -> Debug in Chrome (or Safari)
-- Hot reload only works with the web socket executor (hit CMD+D in the simulator) or the WebView executor (CMD+CTRL+Z -> Enable Safari Debugging). See [the explanatory note](https://github.com/mjohnston/react-native-webpack-server#hot-reload).
+### To run your app on Android
 
-To build for release:
-
-```
-npm run bundle
-```
-
-Then uncomment the line in AppDelegate.m that loads the local `main.jsbundle`.
+- Have an Android emulator running, or a device connected
+- cd /Users/nelsonshin/Sites/lytefoot/lytefoot
+- react-native run-android
+- Setup auto reload: launch dev menu, go to Dev Settings and select Auto reload on JS change option.
