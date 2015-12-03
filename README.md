@@ -9,10 +9,10 @@ Requires:
 
 ### Installing the app
 
-Install the app dependencies and start the server:
+Install the react-native command line tools:
 
 ```
-npm start
+npm i -g react-native-cli
 ```
 
 ### To run your app on iOS

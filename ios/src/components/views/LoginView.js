@@ -42,6 +42,7 @@ export default class LoginView extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={[styles.border, styles.top]}>
+                    {/*
                     <Text style={styles.title}>
                         {this.props.title}
                     </Text>
@@ -49,12 +50,11 @@ export default class LoginView extends React.Component {
                         style={{flex: 1, overflow: 'visible'}}
                         source={{uri: 'http://pickaface.net/includes/themes/clean/img/slide2.png'}}
                     />
-                    {/*
-                    <Image
-                        style={{width: 400, height: 400}}
-                        source={require('image!login-check')}
-                    />
                     */}
+                    <Image
+                        style={{width: 150, height: 117}}
+                        source={require('../../../../img/icon_check.jpg')}
+                    />
                 </View>
                 <View style={[styles.border, styles.bottomAlign]}>
                     <View style={styles.bottomContainer}>
@@ -106,7 +106,9 @@ const styles = StyleSheet.create({
     top: {
         flex: 1,
         borderColor: 'red',
-        backgroundColor: 'lightblue'
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     title: {
         padding: 14,
