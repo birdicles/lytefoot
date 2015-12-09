@@ -17,6 +17,19 @@
 {
   NSURL *jsCodeLocation;
 
+  
+  /**
+   * Display available font names
+   */
+  for (NSString* family in [UIFont familyNames])
+  {
+    NSLog(@"%@", family);
+    for (NSString* name in [UIFont fontNamesForFamilyName: family])
+    {
+      NSLog(@" %@", name);
+    }
+  }
+  
   /**
    * Loading JavaScript code - uncomment the one you want.
    *

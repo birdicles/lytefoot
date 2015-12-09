@@ -3,6 +3,7 @@
 import React, {
     StyleSheet,
     Text,
+    TextInput,
     Image,
     View,
     TouchableOpacity
@@ -58,20 +59,33 @@ export default class LoginView extends React.Component {
                 </View>
                 <View style={[styles.border, styles.bottomAlign]}>
                     <View style={styles.bottomContainer}>
-                        <Text style={styles.title}>
-                            Second
-                        </Text>
-                        <Text style={styles.title}>
-                            Third
-                        </Text>
-                        <Text style={styles.title}>
-                            Fourth
-                        </Text>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.title}>
+                                USERNAME
+                            </Text>
+                            <TextInput style={styles.input} />
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <Text style={styles.title}>
+                                PASSWORD
+                            </Text>
+                            <TextInput style={styles.input}
+                                       secureTextEntry={true} />
+                        </View>
                         <TouchableOpacity
                             activeOpacity={0.7}
                             onPress={this.onSubmit}
                             style={styles.submit}>
                             <Text style={styles.submitText}>Sign In</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            activeOpacity={0.7}
+                            onPress={this.onSubmit}
+                            style={styles.footerLinkContainer}>
+                            <Text style={styles.footerLink}>
+                                DON’T HAVE AN ACCOUNT?&nbsp;&nbsp;&nbsp;
+                                <Text style={[styles.footerLink, styles.footerLinkHighlight]}>SIGN UP</Text>
+                            </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -97,9 +111,9 @@ const styles = StyleSheet.create({
 
     // generic
     border: {
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderColor: 'grey'
+        // borderStyle: 'solid',
+        // borderWidth: 1,
+        // borderColor: 'grey'
     },
 
     // centered icon
@@ -111,9 +125,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     title: {
-        padding: 14,
-        fontSize: 16,
-        color: '#333'
+        fontSize: 10,
+        fontFamily: 'Avenir-Book',
+        color: '#a8a8aa'
     },
 
     // form
@@ -124,19 +138,42 @@ const styles = StyleSheet.create({
     bottomContainer: {
         flex: 1,
         flexDirection: 'column',
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        margin: 30
+    },
+    inputContainer: {
+        marginBottom: 30,
+        borderBottomColor: '#f3f3f4',
+        borderBottomWidth: 1
+    },
+    input: {
+        height: 40,
+        fontSize: 14,
+        fontFamily: 'Avenir-Book',
+        color: '#1d1d26'
     },
     submit: {
         height: 55,
-        margin: 30,
         backgroundColor: '#50d2c2'
     },
     submitText: {
         color: 'white',
-        // TODO - ADD CUSTOM FONT
-        // fontFamily: 'AvenirBook',
+        fontFamily: 'Avenir-Book',
         fontSize: 15,
         paddingTop: 18,
         textAlign: 'center'
+    },
+    footerLinkContainer: {
+        margin: 0
+    },
+    footerLink: {
+        fontFamily: 'Avenir-Book',
+        fontSize: 10,
+        color: '#a8a8aa',
+        paddingTop: 18,
+        textAlign: 'center'
+    },
+    footerLinkHighlight: {
+        color: '#1d1d26'
     }
 });
