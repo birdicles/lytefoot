@@ -73,25 +73,26 @@ export default class Menu extends Component {
                     />
                     <Text style={styles.name}>View Menu</Text>
                 </View>
-                <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={this.onItemClick('login')}
-                >
-                    <Text style={styles.item}>Login</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={this.onItemClick('signup')}
-                >
-                    <Text style={styles.item}>Sign Up</Text>
-                </TouchableOpacity>
+                {this.props.rows.map(row => {
+                    let boundClick = this.onItemClick.bind(this);
+                    return (
+                        <TouchableOpacity
+                            key={row.id}
+                            activeOpacity={0.7}
+                            onPress={boundClick(row.id)}
+                        >
+                            <Text style={styles.item}>{row.title}</Text>
+                        </TouchableOpacity>
+                    );
+                })}
             </ScrollView>
         );
     }
 }
 
 Menu.propTypes = {
-    navigator: React.PropTypes.object.isRequired,
+    mainmenu: React.PropTypes.object.isRequired,
+    rows: React.PropTypes.array.isRequired,
     onViewSelect: React.PropTypes.func
 };
 

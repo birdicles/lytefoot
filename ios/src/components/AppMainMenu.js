@@ -1,31 +1,36 @@
-'use strict';
-
 import React, {
-    PixelRatio,
-    StyleSheet,
-    View,
+    // StyleSheet,
+    PropTypes,
     Component
 } from 'react-native';
 import Menu from './nav/Menu';
 import SideMenu from './nav/SideMenu';
 import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
+import MapView from './views/MapView';
 
-export default class AppIndex extends Component {
+const componentMap = {
+    login: LoginView,
+    signup: SignupView,
+    map: MapView
+};
+
+export default class AppMainMenu extends Component {
 
     constructor(props) {
         super(props);
 
-        const sectionIDs = Object.keys(props.views);
+        const sectionIDs = Object.keys(this.props.mainmenu)
+            .filter(prop => prop !== 'view');
         const rows = sectionIDs.map(id => {
-            props.views[id].id = id;
-            return props.views[id];
+            this.props.mainmenu[id].id = id;
+            return this.props.mainmenu[id];
         });
 
         this.state = {
             touchToClose: false,
             rows: rows,
-            currentView: 'login'
+            currentView: this.props.mainmenu.view
         };
     }
 
@@ -43,35 +48,23 @@ export default class AppIndex extends Component {
         }
     }
 
-    // TODO - implement some flavor of flux store instead of this shit
-    handleViewSelect(viewId) {
-        this.setState({
-            currentView: viewId
-        });
-    }
-
     getView() {
-        let viewId = this.state.currentView;
-        let props = this.props.views[viewId];
-        switch(viewId) {
-            case 'login':
-                return <LoginView {...props} onViewSelect={this.handleViewSelect.bind(this)} />;
-            case 'signup':
-                return <SignupView {...props} onViewSelect={this.handleViewSelect.bind(this)} />;
-            default:
-                return <LoginView {...props} onViewSelect={this.handleViewSelect.bind(this)} />;
-        }
+        let props = this.props;
+        let viewId = props.mainmenu.view;
+        let viewprops = props.mainmenu[viewId];
+        let MyComponent = componentMap[viewId];
+        return <MyComponent {...viewprops} onViewSelect={props.update} />;
     }
 
     render() {
         // TODO - ROUTE AFTER AUTHENTICATION CHECK (USE FB AUTH?)
         const menu = (
             <Menu
-                navigator={this.props.navigator}
-                onViewSelect={this.handleViewSelect.bind(this)}
+                mainmenu={this.props}
+                rows={this.state.rows}
+                onViewSelect={this.props.update}
             />
         );
-
         return (
             <SideMenu
                 menu={menu}
@@ -104,9 +97,8 @@ export default class AppIndex extends Component {
 // });
 
 // es7 class props would fix all of this ugly :(
-// AppIndex.defaultProps = {};
-
-AppIndex.propTypes = {
-    navigator: React.PropTypes.object.isRequired,
-    views: React.PropTypes.object.isRequired
+AppMainMenu.defaultProps = {};
+AppMainMenu.propTypes = {
+    mainmenu: PropTypes.object.isRequired,
+    update: PropTypes.func.isRequired
 };

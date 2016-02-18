@@ -41,7 +41,7 @@ const barrierForward = deviceScreen.width / 4;
  * @return {Boolean}
  */
 function shouldOpenMenu(dx) {
-  return dx > barrierForward;
+    return dx > barrierForward;
 }
 
 export default class SideMenu extends Component {
@@ -82,6 +82,10 @@ export default class SideMenu extends Component {
             onPanResponderMove: this.handlePanResponderMove.bind(this),
             onPanResponderRelease: this.handlePanResponderEnd.bind(this),
         });
+    }
+
+    componentDidUpdate() {
+        if(this.isOpen) this.closeMenu();
     }
 
     /**

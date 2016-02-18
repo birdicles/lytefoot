@@ -1,7 +1,4 @@
-'use strict';
+import { AppRegistry } from 'react-native';
+import AppContainer from './shared/containers/AppContainer';
 
-var React = require('react-native');
-var { AppRegistry } = React;
-var App = require('./ios/src/components/App');
-
-AppRegistry.registerComponent('lytefoot', () => App);
+AppRegistry.registerComponent('lytefoot', () => AppContainer);

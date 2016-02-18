@@ -4,9 +4,15 @@
   "private": true,
   "scripts": {
     "start": "open ios/lytefoot.xcodeproj",
-    "start-server": "node_modules/react-native/packager/packager.sh"
+    "start-server": "node_modules/react-native/packager/packager.sh",
+    "cleanup-modules": "npm install && npm dedupe && npm prune"
   },
   "dependencies": {
-    "react-native": "^0.14.1"
-  }
+    "fbjs": "^0.6.0",
+    "react-native": "0.19.0",
+    "react-redux": "4.1.2",
+    "redux": "3.1.7",
+    "redux-thunk": "1.0.3"
+  },
+  "devDependencies": {}
 }

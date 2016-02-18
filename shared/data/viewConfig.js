@@ -39,5 +39,9 @@ export default {
     'signup': {
         title: 'Sign up',
         items: []
+    },
+    'map': {
+        title: 'Take a walk',
+        items: []
     }
 };
