@@ -2,11 +2,13 @@
  * Bind eventful application state to child components.
  * @module shared/containers/AppMenuContainer
  */
-import React, { Component }   from 'react-native';
+import React, { PropTypes, Component }   from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
+import { assign }             from 'lodash';
 import * as menuActions       from '../actions/menuActions';
-import AppMainMenu       from '../../ios/src/components/AppMainMenu';
+import * as mapActions        from '../actions/mapActions';
+import AppMainMenu            from '../../ios/src/components/AppMainMenu';
 
 class AppMenuContainer extends Component {
 
@@ -19,19 +21,25 @@ class AppMenuContainer extends Component {
         return (
             <AppMainMenu
                 mainmenu={state.mainmenu}
+                map={state.map}
                 {...actions} />
         );
     }
 
 }
 
+AppMenuContainer.defaultProps = {};
+AppMenuContainer.propTypes = {
+    state: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired
+};
+
 export default connect(state => ({
-        // connect state property and events to this container
-        // default state from designated reducer
-        state: state
-    }),
-    (dispatch) => ({
-        // inject dispatch method into this container
-        actions: bindActionCreators(menuActions, dispatch)
-    })
+    // connect state property and events to this container
+    // default state from designated reducer
+    state: state
+}), (dispatch) => ({
+    // inject actions and dispatch method into this container
+    actions: bindActionCreators(assign({}, menuActions, mapActions), dispatch)
+})
 )(AppMenuContainer);

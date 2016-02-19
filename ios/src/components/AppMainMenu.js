@@ -7,12 +7,21 @@ import Menu from './nav/Menu';
 import SideMenu from './nav/SideMenu';
 import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
-import MapView from './views/MapView';
+import MapView from './views/MapComponentView';
 
 const componentMap = {
-    login: LoginView,
-    signup: SignupView,
-    map: MapView
+    login: {
+        MyComponent: LoginView,
+        propsKey: 'mainmenu'
+    },
+    signup: {
+        MyComponent: SignupView,
+        propsKey: 'mainmenu'
+    },
+    map: {
+        MyComponent: MapView,
+        propsKey: 'map'
+    }
 };
 
 export default class AppMainMenu extends Component {
@@ -51,9 +60,16 @@ export default class AppMainMenu extends Component {
     getView() {
         let props = this.props;
         let viewId = props.mainmenu.view;
-        let viewprops = props.mainmenu[viewId];
-        let MyComponent = componentMap[viewId];
-        return <MyComponent {...viewprops} onViewSelect={props.update} />;
+        let viewProps = props.mainmenu[viewId];
+        let { MyComponent, propsKey } = componentMap[viewId];
+        // TODO - select appropriate actions or group them all together
+        return (
+            <MyComponent
+                {...viewProps}
+                {...props[propsKey]}
+                actions={props.updateMap}
+                onViewSelect={props.update} />
+        );
     }
 
     render() {
@@ -100,5 +116,6 @@ export default class AppMainMenu extends Component {
 AppMainMenu.defaultProps = {};
 AppMainMenu.propTypes = {
     mainmenu: PropTypes.object.isRequired,
+    map: PropTypes.object.isRequired,
     update: PropTypes.func.isRequired
 };
