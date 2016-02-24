@@ -4,19 +4,19 @@
  */
 import * as types from '../actions/actionTypes';
 
- const initialState = {
-    region: {
-        latitude: 0,
-        longitude: 0
-    }
-};
+ const initialState = {};
 
 export default function map(state = initialState, action = {}) {
     switch (action.type) {
-        case types.MAP_UPDATE:
+        case types.MAP_UPDATE_LOCATION:
             return {
                 ...state,
-                view: action.id
+                region: action.region
+            };
+        case types.MAP_START:
+            return {
+                ...state,
+                isRunning: true
             };
         default:
             return state;

@@ -7,7 +7,7 @@ import Menu from './nav/Menu';
 import SideMenu from './nav/SideMenu';
 import LoginView from './views/LoginView';
 import SignupView from './views/SignupView';
-import MapView from './views/MapComponentView';
+import WalkView from './views/WalkComponentView';
 
 const componentMap = {
     login: {
@@ -18,17 +18,20 @@ const componentMap = {
         MyComponent: SignupView,
         propsKey: 'mainmenu'
     },
-    map: {
-        MyComponent: MapView,
+    walk: {
+        MyComponent: WalkView,
         propsKey: 'map'
     }
 };
 
 export default class AppMainMenu extends Component {
 
+    // TODO - CHANGE SIDE MENU TRIGGER TO ICON CLICK
+
     constructor(props) {
         super(props);
 
+        // construct menu items from passed in config
         const sectionIDs = Object.keys(this.props.mainmenu)
             .filter(prop => prop !== 'view');
         const rows = sectionIDs.map(id => {
@@ -62,13 +65,11 @@ export default class AppMainMenu extends Component {
         let viewId = props.mainmenu.view;
         let viewProps = props.mainmenu[viewId];
         let { MyComponent, propsKey } = componentMap[viewId];
-        // TODO - select appropriate actions or group them all together
         return (
             <MyComponent
                 {...viewProps}
                 {...props[propsKey]}
-                actions={props.updateMap}
-                onViewSelect={props.update} />
+                {...props.actions} />
         );
     }
 
@@ -78,7 +79,7 @@ export default class AppMainMenu extends Component {
             <Menu
                 mainmenu={this.props}
                 rows={this.state.rows}
-                onViewSelect={this.props.update}
+                onViewSelect={this.props.actions.updateMenu}
             />
         );
         return (
@@ -117,5 +118,5 @@ AppMainMenu.defaultProps = {};
 AppMainMenu.propTypes = {
     mainmenu: PropTypes.object.isRequired,
     map: PropTypes.object.isRequired,
-    update: PropTypes.func.isRequired
+    actions: PropTypes.object.isRequired
 };

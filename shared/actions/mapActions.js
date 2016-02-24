@@ -4,9 +4,15 @@
  */
 import * as types from './actionTypes';
 
-export function updateMap(id) {
+export function updateMap(region) {
     return {
-        type: types.MAP_UPDATE,
-        id
+        type: types.MAP_UPDATE_LOCATION,
+        region
+    };
+}
+
+export function startMap() {
+    return {
+        type: types.MAP_START
     };
 }

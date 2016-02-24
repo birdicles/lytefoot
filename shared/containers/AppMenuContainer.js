@@ -22,7 +22,7 @@ class AppMenuContainer extends Component {
             <AppMainMenu
                 mainmenu={state.mainmenu}
                 map={state.map}
-                {...actions} />
+                actions={actions} />
         );
     }
 

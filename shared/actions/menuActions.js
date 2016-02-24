@@ -4,7 +4,7 @@
  */
 import * as types from './actionTypes';
 
-export function update(id) {
+export function updateMenu(id) {
     return {
         type: types.MAINMENU_UPDATE,
         id

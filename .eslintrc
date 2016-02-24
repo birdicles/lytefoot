@@ -34,7 +34,7 @@ env:
   jasmine: true
 
 rules:
-  keyword-spacing: 2
+  keyword-spacing: 1
   no-alert: 1
   no-array-constructor: 1
   no-bitwise: 0

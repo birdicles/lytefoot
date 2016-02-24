@@ -40,8 +40,8 @@ export default {
         title: 'Sign up',
         items: []
     },
-    'map': {
-        title: 'Take a walk',
+    'walk': {
+        title: 'Walk In Progress',
         items: []
     }
 };

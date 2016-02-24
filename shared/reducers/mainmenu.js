@@ -6,7 +6,7 @@ import * as types from '../actions/actionTypes';
 import ViewConfig from '../data/viewConfig'; // TODO - ditch this temporary config?
 
  const initialState = {
-    view: 'map',
+    view: 'walk',
     ...ViewConfig
 };
 
