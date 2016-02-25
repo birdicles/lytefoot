@@ -4,7 +4,8 @@
  */
 import * as types from '../actions/actionTypes';
 
- const initialState = {};
+const initialState = {};
+let isPaused;
 
 export default function map(state = initialState, action = {}) {
     switch (action.type) {
@@ -17,6 +18,17 @@ export default function map(state = initialState, action = {}) {
             return {
                 ...state,
                 isRunning: true
+            };
+        case types.MAP_TOGGLE_PAUSE:
+            isPaused = !isPaused;
+            return {
+                ...state,
+                isPaused
+            };
+        case types.MAP_STOP:
+            return {
+                ...state,
+                isRunning: false
             };
         default:
             return state;

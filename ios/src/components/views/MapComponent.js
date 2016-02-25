@@ -34,7 +34,6 @@ export default class MapComponent extends Component {
     constructor(props) {
         super(props);
 
-        console.log('MapComponent.js: props:', props);
         // let bounds = this.setBounds(37.3657553);
 
         // this.state = {
@@ -117,12 +116,23 @@ export default class MapComponent extends Component {
         // let bounds = this.setBounds(37.3657553);
         // TODO - CHECK FOR STATE CHANGE
         if(this.props.isRunning) console.log('MapComponent.js: start this byotch');
+
+        // this is unnecessary but a good reference of some shit i read
+        let id = 'region';
+        let {
+            initialRegion: ir = {}, // destructuring with aliasing and default value
+            [id]: regionAlias = {}, // dynamic key and aliasing and default
+            ...otherProps // selective
+        } = this.props;
+
+        console.log('MapComponent.js: this.props:', this.props);
+
         return (
             <MapView
-                initialRegion={this.props.initialRegion}
+                initialRegion={ir}
                 onRegionChange={this.onRegionChange}
                 style={styles.map}
-                region={this.props.region}
+                region={regionAlias}
             />
         );
     }

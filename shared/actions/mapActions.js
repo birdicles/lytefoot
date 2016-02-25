@@ -16,3 +16,15 @@ export function startMap() {
         type: types.MAP_START
     };
 }
+
+export function togglePauseMap() {
+    return {
+        type: types.MAP_TOGGLE_PAUSE
+    };
+}
+
+export function stopMap() {
+    return {
+        type: types.MAP_STOP
+    };
+}

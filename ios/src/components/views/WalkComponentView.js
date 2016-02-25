@@ -41,20 +41,6 @@ export default class WalkComponentView extends Component {
     componentWillUnmount() {
     }
 
-    onStopClick() {}
-
-    onPauseClick() {}
-
-    onPlayClick() {
-        // this.props.updateMap({ // sunnyvale, byotch!
-        //     latitude: 47.3657553,
-        //     longitude: -112.026385,
-        //     latitudeDelta: 0.0922,
-        //     longitudeDelta: 0.0421
-        // });
-        this.props.startMap();
-    }
-
     // spoofMovement() {
     //     this.cnt = 0;
     //     this.int = setInterval(function() {
@@ -72,7 +58,7 @@ export default class WalkComponentView extends Component {
     // }
 
     render() {
-        console.log('WalkComponentView.js: this.props:', this.props);
+        // console.log('WalkComponentView.js: this.props:', this.props);
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>
@@ -80,15 +66,16 @@ export default class WalkComponentView extends Component {
                 </Text>
                 <MapComponent
                     region={this.props.region}
-                    isRunning={this.props.isRunning} />
-                <TouchableOpacity onPress={this.onStopClick}>
-                    <Text style={styles.item}>Stop</Text>
+                    isRunning={this.props.isRunning}
+                    isPaused={this.props.isPaused} />
+                <TouchableOpacity onPress={this.props.startMap}>
+                    <Text style={styles.item}>Play</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.onPauseClick}>
+                <TouchableOpacity onPress={this.props.togglePauseMap}>
                     <Text style={styles.item}>Pause</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={this.onPlayClick.bind(this)}>
-                    <Text style={styles.item}>Play</Text>
+                <TouchableOpacity onPress={this.props.stopMap}>
+                    <Text style={styles.item}>Stop</Text>
                 </TouchableOpacity>
             </View>
         );
